@@ -70,39 +70,24 @@ input[type=image] {
     margin: 0;
     cursor: pointer;
 }
+.toolbar input:checked + label {
+    height: 40px;
+}
 label[for="c-000000"] {
     background: #bdc3c7;
-}
-input:checked + label[for="c-000000"] {
-    border-bottom: 8px solid #bdc3c7;
 }
 label[for="c-ffffff"] {
     background: #fff;
 }
-input:checked + label[for="c-ffffff"] {
-    border-bottom: 8px solid #fff;
-}
 label[for="c-2980b9"] {
     background: #2980b9;
-}
-input:checked + label[for="c-2980b9"] {
-    border-bottom: 8px solid #2980b9;
 }
 label[for="c-27ae60"] {
     background: #27ae60;
 }
-input:checked + label[for="c-27ae60"] {
-    border-bottom: 8px solid #27ae60;
-}
 label[for="c-f1c40f"] {
     background: #f1c40f;
 }
-input:checked + label[for="c-f1c40f"] {
-    border-bottom: 8px solid #f1c40f;
-}
 label[for="c-c0392b"] {
     background: #c0392b;
-}
-input:checked + label[for="c-c0392b"] {
-    border-bottom: 8px solid #c0392b;
 }
