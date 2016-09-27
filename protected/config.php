@@ -16,12 +16,26 @@ define('COLOR_BG2', 'ffffff');
 define('COLOR_TRANSPARENT', '000000');
 
 /**
+ * Get config param
+ * @param string $key
+ * @return mixed
+ */
+function getConfig($key)
+{
+    static $config;
+    if ($config === null) {
+        $config = require __DIR__ . DIRECTORY_SEPARATOR . 'config-local.php';
+    }
+    return isset($config[$key]) ? $config[$key] : null;
+}
+
+/**
  * Connect to the database
  * @return PDO
  */
 function db()
 {
-    return new PDO('mysql:dbname=youpixelart;charset=utf8', 'root', 'abc11', [
+    return new PDO(getConfig('db.dsn'), getConfig('db.user'), getConfig('db.password'), [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
     ]);
@@ -61,7 +75,7 @@ function validateBlockId($blockId)
 function validatePosition($pos)
 {
     if (!ctype_digit($pos) || $pos < 1) {
-        http_response_code(404);
+        header('Location: /?error=11');
         exit;
     }
     return intval($pos);
@@ -75,7 +89,7 @@ function validatePosition($pos)
 function validateColor($color)
 {
     if (!ctype_xdigit($color) || strlen($color) != 6) {
-        http_response_code(404);
+        header('Location: /?error=12');
         exit;
     }
     return $color;

@@ -8,7 +8,7 @@ define('PIXEL_APP', 1);
 
 require 'protected/config.php';
 
-$blockId = validateBlockId(isset($_POST['id']) ? $_POST['id'] : '');
+$blockId = validateBlockId(isset($_GET['id']) ? $_GET['id'] : '');
 $posX = validatePosition(isset($_POST['image_x']) ? $_POST['image_x'] : '');
 $posY = validatePosition(isset($_POST['image_y']) ? $_POST['image_y'] : '');
 $width = validatePosition(isset($_POST['width']) ? $_POST['width'] : '');
@@ -19,7 +19,7 @@ $posX = intval(($posX - 1) / $step);
 $posY = intval(($posY - 1) / $step);
 
 if ($posX >= BLOCK_WIDTH || $posY >= BLOCK_HEIGHT) {
-    http_response_code(404);
+    header('Location: /?error=21');
     exit;
 }
 

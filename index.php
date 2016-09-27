@@ -21,8 +21,7 @@ $blockId = validateBlockId(isset($_GET['id']) ? $_GET['id'] : '1');
 </head>
 <body>
     <div class="container">
-        <form action="/click.php" method="POST">
-            <input type="hidden" name="id" value="<?= $blockId ?>">
+        <form action="/click.php?id=<?= $blockId ?>" method="POST">
             <input type="hidden" name="width" value="960">
             <div class="toolbar">
                 <input type="radio" name="color" value="000000">
