@@ -27,7 +27,7 @@ $color = isset($_GET['color']) ? $_GET['color'] : '2980b9';
             <div class="toolbar">
                 <?php foreach (getColors() as $key => $value): ?>
                     <input type="radio" name="color" value="<?= $value ?>" id="c-<?= $key ?>"<?= $value === $color ? ' checked' : '' ?>>
-                    <label for="c-<?= $key ?>" style="background: #<?= $value === COLOR_TRANSPARENT ? 'bdc3c7' : $value ?>;"></label>
+                    <label for="c-<?= $key ?>" style="background: #<?= $value === COLOR_TRANSPARENT ? 'bdc3c7' : $value ?>;" title="<?= ucfirst($key) ?>"></label>
                 <?php endforeach ?>
             </div>
             <div class="page-link">
