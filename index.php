@@ -21,7 +21,7 @@ $color = isset($_GET['color']) ? $_GET['color'] : '2980b9';
     <link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
-    <div class="container" id="container">
+    <div class="container" id="container" data-block-id="<?= $blockId ?>">
         <form action="/click.php?id=<?= $blockId ?>" method="POST">
             <input type="hidden" name="width" value="960" id="width">
             <div class="toolbar">
@@ -39,7 +39,10 @@ $color = isset($_GET['color']) ? $_GET['color'] : '2980b9';
                     <a href="/?id=<?= $blockId - 1 ?>">Previous page &uarr;</a>
                 <?php endif ?>
             </div>
-            <input type="image" name="image" src="/image.php?id=<?= $blockId ?>" width="<?= BLOCK_WIDTH ?>" height="<?= BLOCK_HEIGHT ?>">
+            <div id="images">
+                <input type="image" name="image" src="/image.php?id=<?= $blockId ?>" width="<?= BLOCK_WIDTH ?>" height="<?= BLOCK_HEIGHT 
+                ?>">
+            </div>
             <div class="page-link" id="page-down">
                 <?php if ($blockId == BLOCK_MAX): ?>
                     <a href="/">Next page &darr;</a>
