@@ -31,6 +31,20 @@ input[type=image] {
     padding: 0;
     margin: 0 auto;
 }
+.page-link a {
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: 8px 0;
+    margin: 0;
+    color: #333;
+    text-decoration: none;
+}
+.page-link a:hover,
+.page-link a:focus {
+    color: #333;
+    text-decoration: underline;
+}
 /*.toolbar {
     position: fixed;
     left: 0;

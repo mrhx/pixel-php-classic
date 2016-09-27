@@ -30,19 +30,23 @@ $color = isset($_GET['color']) ? $_GET['color'] : '2980b9';
                     <label for="c-<?= $value ?>"></label>
                 <?php endforeach ?>
             </div>
-            <?php if ($blockId == 1): ?>
-                <a href="/?id=<?= BLOCK_MAX ?>">Previous page</a>
-            <?php elseif ($blockId == 2): ?>
-                <a href="/">Previous page</a>
-            <?php else: ?>
-                <a href="/?id=<?= $blockId - 1 ?>">Previous page</a>
-            <?php endif ?>
+            <div class="page-link">
+                <?php if ($blockId == 1): ?>
+                    <a href="/?id=<?= BLOCK_MAX ?>">Previous page &uarr;</a>
+                <?php elseif ($blockId == 2): ?>
+                    <a href="/">Previous page &uarr;</a>
+                <?php else: ?>
+                    <a href="/?id=<?= $blockId - 1 ?>">Previous page &uarr;</a>
+                <?php endif ?>
+            </div>
             <input type="image" name="image" src="/image.php?id=<?= $blockId ?>" width="<?= BLOCK_WIDTH ?>" height="<?= BLOCK_HEIGHT ?>">
-            <?php if ($blockId == BLOCK_MAX): ?>
-                <a href="/">Next page</a>
-            <?php else: ?>
-                <a href="/?id=<?= $blockId + 1 ?>">Next page</a>
-            <?php endif ?>
+            <div class="page-link">
+                <?php if ($blockId == BLOCK_MAX): ?>
+                    <a href="/">Next page &darr;</a>
+                <?php else: ?>
+                    <a href="/?id=<?= $blockId + 1 ?>">Next page &darr;</a>
+                <?php endif ?>
+            </div>
         </form>
     </div>
     <script src="/js/app.js"></script>
