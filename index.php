@@ -8,6 +8,7 @@ define('PIXEL_APP', 1);
 require 'protected/config.php';
 
 $blockId = validateBlockId(isset($_GET['id']) ? $_GET['id'] : '1');
+$color = isset($_GET['color']) ? $_GET['color'] : '2980b9';
 
 ?>
 <!DOCTYPE html>
@@ -24,12 +25,10 @@ $blockId = validateBlockId(isset($_GET['id']) ? $_GET['id'] : '1');
         <form action="/click.php?id=<?= $blockId ?>" method="POST">
             <input type="hidden" name="width" value="960">
             <div class="toolbar">
-                <input type="radio" name="color" value="000000">
-                <input type="radio" name="color" value="ffffff">
-                <input type="radio" name="color" value="2980b9" checked>
-                <input type="radio" name="color" value="27ae60">
-                <input type="radio" name="color" value="f1c40f">
-                <input type="radio" name="color" value="c0392b">
+                <?php foreach (getColors() as $value): ?>
+                    <input type="radio" name="color" value="<?= $value ?>" id="c-<?= $value ?>"<?= $value === $color ? ' checked' : '' ?>>
+                    <label for="c-<?= $value ?>"></label>
+                <?php endforeach ?>
             </div>
             <?php if ($blockId == 1): ?>
                 <a href="/?id=<?= BLOCK_MAX ?>">Previous page</a>

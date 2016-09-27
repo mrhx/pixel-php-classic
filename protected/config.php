@@ -16,6 +16,15 @@ define('COLOR_BG2', 'ffffff');
 define('COLOR_TRANSPARENT', '000000');
 
 /**
+ * Get available colors
+ * @return array
+ */
+function getColors()
+{
+    return ['000000', 'ffffff', '2980b9', '27ae60', 'f1c40f', 'c0392b'];
+}
+
+/**
  * Get config param
  * @param string $key
  * @return mixed
