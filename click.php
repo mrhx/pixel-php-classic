@@ -58,4 +58,4 @@ if ($exec !== false) {
         value = '$color'");
 }
 
-header('Location: /');
+header("Location: /?id={$blockId}&color={$color}");
