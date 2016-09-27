@@ -30,7 +30,7 @@ $color = isset($_GET['color']) ? $_GET['color'] : '2980b9';
                     <label for="<?= $key ?>" style="background: #<?= $value === COLOR_TRANSPARENT ? 'bdc3c7' : $value ?>;" title="<?= ucfirst($key) ?>"></label>
                 <?php endforeach ?>
             </div>
-            <div class="page-link">
+            <div class="page-link" id="page-up">
                 <?php if ($blockId == 1): ?>
                     <a href="/?id=<?= BLOCK_MAX ?>">Previous page &uarr;</a>
                 <?php elseif ($blockId == 2): ?>
@@ -40,7 +40,7 @@ $color = isset($_GET['color']) ? $_GET['color'] : '2980b9';
                 <?php endif ?>
             </div>
             <input type="image" name="image" src="/image.php?id=<?= $blockId ?>" width="<?= BLOCK_WIDTH ?>" height="<?= BLOCK_HEIGHT ?>">
-            <div class="page-link">
+            <div class="page-link" id="page-down">
                 <?php if ($blockId == BLOCK_MAX): ?>
                     <a href="/">Next page &darr;</a>
                 <?php else: ?>
