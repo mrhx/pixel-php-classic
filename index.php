@@ -39,7 +39,7 @@ $color = isset($_GET['color']) ? $_GET['color'] : '2980b9';
                     <a href="/?id=<?= $blockId - 1 ?>">Previous page &uarr;</a>
                 <?php endif ?>
             </div>
-            <div id="images">
+            <div id="images" class="images">
                 <input type="image" name="image" src="/image.php?id=<?= $blockId ?>" width="<?= BLOCK_WIDTH ?>" height="<?= BLOCK_HEIGHT 
                 ?>">
             </div>

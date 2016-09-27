@@ -26,6 +26,10 @@ input[type=image] {
     image-rendering: pixelated;
     -ms-interpolation-mode: nearest-neighbor;
 }
+.images {
+    font-size: 0;
+    line-height: 0;
+}
 .container {
     width: 960px;
     padding: 0;
