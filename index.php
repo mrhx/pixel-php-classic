@@ -21,13 +21,13 @@ $color = isset($_GET['color']) ? $_GET['color'] : '2980b9';
     <link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="container">
         <form action="/click.php?id=<?= $blockId ?>" method="POST">
-            <input type="hidden" name="width" value="960">
+            <input type="hidden" name="width" value="960" id="width">
             <div class="toolbar">
                 <?php foreach (getColors() as $key => $value): ?>
-                    <input type="radio" name="color" value="<?= $value ?>" id="c-<?= $key ?>"<?= $value === $color ? ' checked' : '' ?>>
-                    <label for="c-<?= $key ?>" style="background: #<?= $value === COLOR_TRANSPARENT ? 'bdc3c7' : $value ?>;" title="<?= ucfirst($key) ?>"></label>
+                    <input type="radio" name="color" value="<?= $value ?>" id="<?= $key ?>"<?= $value === $color ? ' checked' : '' ?>>
+                    <label for="<?= $key ?>" style="background: #<?= $value === COLOR_TRANSPARENT ? 'bdc3c7' : $value ?>;" title="<?= ucfirst($key) ?>"></label>
                 <?php endforeach ?>
             </div>
             <div class="page-link">
