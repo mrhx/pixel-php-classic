@@ -1,7 +1,7 @@
 body {
     background: #ecf0f1;
     color: #333;
-    padding: 0;
+    padding: 40px 0 0;
     margin: 0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
@@ -45,13 +45,12 @@ input[type=image] {
     color: #333;
     text-decoration: underline;
 }
-/*.toolbar {
+.toolbar {
     position: fixed;
     left: 0;
     top: 0;
     z-index: 1030;
 }
-*/
 .toolbar:after {
     content: " ";
     display: table;
@@ -62,8 +61,7 @@ input[type=image] {
 }
 .toolbar label {
     float: left;
-    vertical-align: top;
-    display: inline-block;
+    display: block;
     width: 32px;
     height: 32px;
     padding: 0;
