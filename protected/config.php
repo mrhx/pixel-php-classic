@@ -21,7 +21,14 @@ define('COLOR_TRANSPARENT', '000000');
  */
 function getColors()
 {
-    return ['000000', 'ffffff', '2980b9', '27ae60', 'f1c40f', 'c0392b'];
+    return [
+        'transparent' => '000000',
+        'white' => 'ffffff',
+        'blue' => '2980b9',
+        'green' => '27ae60',
+        'yellow' => 'f1c40f',
+        'red' => 'c0392b'
+    ];
 }
 
 /**

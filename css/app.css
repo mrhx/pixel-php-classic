@@ -69,25 +69,8 @@ input[type=image] {
     padding: 0;
     margin: 0;
     cursor: pointer;
+    background: #bdc3c7;
 }
 .toolbar input:checked + label {
     height: 40px;
-}
-label[for="c-000000"] {
-    background: #bdc3c7;
-}
-label[for="c-ffffff"] {
-    background: #fff;
-}
-label[for="c-2980b9"] {
-    background: #2980b9;
-}
-label[for="c-27ae60"] {
-    background: #27ae60;
-}
-label[for="c-f1c40f"] {
-    background: #f1c40f;
-}
-label[for="c-c0392b"] {
-    background: #c0392b;
 }
