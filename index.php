@@ -27,7 +27,7 @@ $color = isset($_GET['color']) ? $_GET['color'] : '2980b9';
 </head>
 <body>
     <div class="container" id="container" data-block-id="<?= $blockId ?>">
-        <form action="/click.php?id=<?= $blockId ?>" method="POST">
+        <form action="/click.php?id=<?= $blockId ?>" method="POST" id="form">
             <input type="hidden" name="width" value="960" id="width">
             <div class="toolbar">
                 <?php foreach (getColors() as $key => $value): ?>

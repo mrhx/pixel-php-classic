@@ -2,6 +2,7 @@
     var widthEl = d.getElementById("width"), containerEl = d.getElementById("container");
     var loading = false, minBlockId = parseInt(containerEl.getAttribute('data-block-id'), 10);
     var image = new Image(), imagesEl = d.getElementById("images"), maxBlockId = minBlockId;
+    var formEl = d.getElementById("form"), clickX, clickY, clickBlockId;
     var resizeFunc = function () {
         var width = d.documentElement.clientWidth || d.body.clientWidth;
         if (width <= 0) {
@@ -18,6 +19,23 @@
         el.height = "60";
         el.src = imageSrc;
         return el;
+    };
+    var submitFunc = function (event) {
+        if (event.preventDefault) {
+            event.preventDefault();
+        }
+        return false;
+    };
+    var clickFunc = function (event) {
+        if (event.target.tagName.toLowerCase() == "input") {
+            var width = d.documentElement.clientWidth || d.body.clientWidth;
+            clickX = event.pageX;
+            clickY = (event.pageY - 40) % width;
+            clickBlockId = Math.floor((event.pageY - 40) / width) + minBlockId;
+            if (clickBlockId > 278) {
+                clickBlockId = clickBlockId - 278;
+            }
+        }
     };
     var prevImageFunc = function () {
         imagesEl.insertBefore(createImageInput(image.src), imagesEl.firstChild);
@@ -67,6 +85,8 @@
     d.getElementById("page-down").style.display = "none";
     w.onresize = resizeFunc;
     w.onscroll = scrollFunc;
+    containerEl.onclick = clickFunc;
+    formEl.onsubmit = submitFunc;
     resizeFunc();
     loadMoreBlocks();
 })(window, document);
