@@ -22,10 +22,21 @@
     var prevImageFunc = function () {
         imagesEl.insertBefore(createImageInput(image.src), imagesEl.firstChild);
         w.scrollTo(0, d.documentElement.clientWidth || d.body.clientWidth);
+        var images = imagesEl.getElementsByTagName("input");
+        if (images.length > 3) {
+            imagesEl.removeChild(images[images.length - 1]);
+            maxBlockId = maxBlockId <= 1 ? 278 : maxBlockId - 1;
+        }
         loading = false;
     };
     var nextImageFunc = function () {
         imagesEl.appendChild(createImageInput(image.src));
+        var images = imagesEl.getElementsByTagName("input");
+        if (images.length > 3) {
+            imagesEl.removeChild(images[0]);
+            minBlockId = minBlockId >= 278 ? 1 : minBlockId + 1;
+            w.scrollBy(0, -(d.documentElement.clientWidth || d.body.clientWidth));
+        }
         loading = false;
     };
     var scrollFunc = function () {
@@ -46,9 +57,16 @@
             image.src = "/image.php?id=" + maxBlockId;
         }
     };
+    var loadMoreBlocks = function () {
+        loading = true;
+        maxBlockId = maxBlockId >= 278 ? 1 : maxBlockId + 1;
+        image.onload = nextImageFunc;
+        image.src = "/image.php?id=" + maxBlockId;
+    };
     d.getElementById("page-up").style.display = "none";
     d.getElementById("page-down").style.display = "none";
     w.onresize = resizeFunc;
     w.onscroll = scrollFunc;
     resizeFunc();
+    loadMoreBlocks();
 })(window, document);
