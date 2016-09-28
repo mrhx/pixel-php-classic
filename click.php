@@ -58,6 +58,11 @@ if ($exec !== false) {
         value = '$color'");
 }
 
+if (!empty($_GET['ajax'])) {
+    echo 'OK';
+    exit;
+}
+
 if ($blockId == 1) {
     header("Location: /?color={$color}");
 } else {

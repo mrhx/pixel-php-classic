@@ -20,14 +20,28 @@
         el.src = imageSrc;
         return el;
     };
+    var requestFunc = function () {
+        if (this.readyState === 4) {
+            if (this.status >= 200 && this.status < 400) {
+                // var data = JSON.parse(this.responseText);
+            } else {
+            }
+        }
+    };
     var submitFunc = function (event) {
+        var request = new XMLHttpRequest();
+        request.open("POST", "/click.php?ajax=1&id=" + clickBlockId, true);
+        request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+        request.onreadystatechange = requestFunc;
+        request.send("image.x=" + clickX + "&image.y=" + clickY + "&width=" + widthEl.value + "&color=777777");
+        request = null;
         if (event.preventDefault) {
             event.preventDefault();
         }
         return false;
     };
     var clickFunc = function (event) {
-        if (event.target.tagName.toLowerCase() == "input") {
+        if (event.target.tagName.toLowerCase() == "input" && event.target.type.toLowerCase() == "image") {
             var width = d.documentElement.clientWidth || d.body.clientWidth;
             clickX = event.pageX;
             clickY = (event.pageY - 40) % width;
