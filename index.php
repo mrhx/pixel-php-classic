@@ -18,7 +18,12 @@ $color = isset($_GET['color']) ? $_GET['color'] : '2980b9';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Youpixelart - Crowd pixel art online</title>
+    <meta name="keywords" content="pixelart, crowd, pixel art, 8bit, painting, drawing, online">
+    <meta name="description" content="Draw pixel art online on a canvas of million pixels">
     <link rel="stylesheet" href="/css/app.min.css">
+    <!--[if IE]><link rel="shortcut icon" href="/favicon.ico"><![endif]-->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="/favicon.png">
 </head>
 <body>
     <div class="container" id="container" data-block-id="<?= $blockId ?>">
