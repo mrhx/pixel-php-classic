@@ -1,6 +1,6 @@
 (function (w, d) {
     var widthEl = d.getElementById("width"), containerEl = d.getElementById("container");
-    var loading = false, minBlockId = parseInt(containerEl.getAttribute('data-block-id'), 10);
+    var loading = false, minBlockId = parseInt(containerEl.getAttribute("data-block-id"), 10);
     var image = new Image(), imagesEl = d.getElementById("images"), maxBlockId = minBlockId;
     var formEl = d.getElementById("form"), clickX, clickY, clickBlockId, clickEl;
     var resizeFunc = function () {
@@ -10,6 +10,15 @@
         }
         widthEl.value = width;
         containerEl.style.width = width + "px";
+    };
+    var getColorValue = function () {
+        var inputs = d.getElementById("toolbar").getElementsByTagName("input");
+        for (var i = 0, n = inputs.length; i < n; ++i) {
+            if (inputs[i].checked) {
+                return inputs[i].value;
+            }
+        }
+        return "2980b9";
     };
     var createImageInput = function (imageSrc) {
         var el = d.createElement("input");
@@ -38,7 +47,7 @@
         request.open("POST", "/click.php?ajax=1&id=" + clickBlockId, true);
         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
         request.onreadystatechange = requestFunc;
-        request.send("image.x=" + clickX + "&image.y=" + clickY + "&width=" + widthEl.value + "&color=777777");
+        request.send("image.x=" + clickX + "&image.y=" + clickY + "&width=" + widthEl.value + "&color=" + getColorValue());
         request = null;
         if (event.preventDefault) {
             event.preventDefault();
