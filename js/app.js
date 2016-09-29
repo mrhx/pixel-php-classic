@@ -86,6 +86,11 @@
         }
         loading = false;
     };
+    var changeUrl = function (blockId) {
+        if (w.history && w.history.pushState) {
+            w.history.pushState("", "", "/?id=" + blockId);
+        }
+    };
     var scrollFunc = function () {
         if (loading) {
             return;
@@ -97,11 +102,13 @@
             minBlockId = minBlockId <= 1 ? 278 : minBlockId - 1;
             image.onload = prevImageFunc;
             image.src = makeImageSrc(minBlockId);
+            changeUrl(minBlockId);
         } else if (top >= maxTop - 30) {
             loading = true;
             maxBlockId = maxBlockId >= 278 ? 1 : maxBlockId + 1;
             image.onload = nextImageFunc;
             image.src = makeImageSrc(maxBlockId);
+            changeUrl(maxBlockId);
         }
     };
     var loadMoreBlocks = function () {
