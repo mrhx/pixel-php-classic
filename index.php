@@ -29,7 +29,7 @@ $color = isset($_GET['color']) ? $_GET['color'] : '2980b9';
     <div class="container" id="container" data-block-id="<?= $blockId ?>">
         <form action="/click.php?id=<?= $blockId ?>" method="POST" id="form">
             <input type="hidden" name="width" value="960" id="width">
-            <div class="toolbar">
+            <div class="toolbar" id="toolbar">
                 <?php foreach (getColors() as $key => $value): ?>
                     <input type="radio" name="color" value="<?= $value ?>" id="<?= $key ?>"<?= $value === $color ? ' checked' : '' ?>>
                     <label for="<?= $key ?>" style="background: #<?= $value === COLOR_TRANSPARENT ? 'bdc3c7' : $value ?>;" title="<?= ucfirst($key) ?>"></label>
