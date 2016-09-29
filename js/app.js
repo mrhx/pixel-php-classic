@@ -2,7 +2,7 @@
     var widthEl = d.getElementById("width"), containerEl = d.getElementById("container");
     var loading = false, minBlockId = parseInt(containerEl.getAttribute('data-block-id'), 10);
     var image = new Image(), imagesEl = d.getElementById("images"), maxBlockId = minBlockId;
-    var formEl = d.getElementById("form"), clickX, clickY, clickBlockId;
+    var formEl = d.getElementById("form"), clickX, clickY, clickBlockId, clickEl;
     var resizeFunc = function () {
         var width = d.documentElement.clientWidth || d.body.clientWidth;
         if (width <= 0) {
@@ -20,10 +20,15 @@
         el.src = imageSrc;
         return el;
     };
+    var makeImageSrc = function (blockId) {
+        return "/image.php?id=" + blockId + "&rnd=" + (new Date()).getTime();
+    };
     var requestFunc = function () {
         if (this.readyState === 4) {
             if (this.status >= 200 && this.status < 400) {
-                // var data = JSON.parse(this.responseText);
+                if (this.responseText == "OK") {
+                    clickEl.src = makeImageSrc(clickBlockId);
+                }
             } else {
             }
         }
@@ -49,6 +54,7 @@
             if (clickBlockId > 278) {
                 clickBlockId = clickBlockId - 278;
             }
+            clickEl = event.target;
         }
     };
     var prevImageFunc = function () {
@@ -81,19 +87,19 @@
             loading = true;
             minBlockId = minBlockId <= 1 ? 278 : minBlockId - 1;
             image.onload = prevImageFunc;
-            image.src = "/image.php?id=" + minBlockId;
+            image.src = makeImageSrc(minBlockId);
         } else if (top >= maxTop - 30) {
             loading = true;
             maxBlockId = maxBlockId >= 278 ? 1 : maxBlockId + 1;
             image.onload = nextImageFunc;
-            image.src = "/image.php?id=" + maxBlockId;
+            image.src = makeImageSrc(maxBlockId);
         }
     };
     var loadMoreBlocks = function () {
         loading = true;
         maxBlockId = maxBlockId >= 278 ? 1 : maxBlockId + 1;
         image.onload = nextImageFunc;
-        image.src = "/image.php?id=" + maxBlockId;
+        image.src = makeImageSrc(maxBlockId);
     };
     d.getElementById("page-up").style.display = "none";
     d.getElementById("page-down").style.display = "none";
