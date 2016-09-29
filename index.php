@@ -7,6 +7,8 @@ define('PIXEL_APP', 1);
 
 require 'protected/config.php';
 
+checkAndInstall();
+
 $blockId = validateBlockId(isset($_GET['id']) ? $_GET['id'] : '1');
 $color = isset($_GET['color']) ? $_GET['color'] : '2980b9';
 

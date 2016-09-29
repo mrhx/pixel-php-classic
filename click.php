@@ -25,38 +25,9 @@ if ($posX >= BLOCK_WIDTH || $posY >= BLOCK_HEIGHT) {
 
 $pixelId = $posY * BLOCK_WIDTH + $posX;
 
-// $db = $this->getPdo();
-// if ($this->hasUser()) {
-//     $condition = "user_id = $userId";
-//     $limit = 500;
-//     $error = 'click_user_limit';
-// } else {
-//     $condition = "ip = {$db->quote($this->getIp())}";
-//     $limit = 300;
-//     $error = 'click_ip_limit';
-// }
-// $query = $db->query("SELECT COUNT(*) FROM history WHERE $condition AND created > DATE_SUB(NOW(), INTERVAL 1 DAY)");
-// if ($query->fetch(\PDO::FETCH_COLUMN) >= $limit) {
-//     $this->setError('click', $error);
-// }
-
 $db = db();
 
-$exec = $db->exec("UPDATE block SET
-    updated = NOW(),
-    updated_by = 0,
-    pixels = INSERT(pixels, $pixelId * 6 + 1, 6, '$color')
-    WHERE id = $blockId LIMIT 1");
-
-if ($exec !== false) {
-    $db->exec("INSERT INTO history SET
-        created = NOW(),
-        user_id = 0,
-        ip = '127.0.0.1',
-        block_id = $blockId,
-        pixel_id = $pixelId,
-        value = '$color'");
-}
+$db->exec(getClickQuery($pixelId, $color, $blockId));
 
 if (!empty($_GET['ajax'])) {
     echo 'OK';

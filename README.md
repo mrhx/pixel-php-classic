@@ -10,3 +10,5 @@ This work is intended for participating in https://a-k-apart.com contest, so it 
 * The front-end code is limited to 10KB including all the assets
 * It uses progressive enhancements and works well enough even without JavaScript
 * Actually the back-end code meets 10KB limit as well, although it's not a requirement of the contest :)
+
+For the first run with sqlite, please give it some time to finish the initialization things as it can take even 10-15 seconds.

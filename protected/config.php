@@ -58,6 +58,49 @@ function db()
 }
 
 /**
+ * Check the database and install the tables, if needed
+ */
+function checkAndInstall()
+{
+    $dsn = getConfig('db.dsn');
+    if (strncmp($dsn, 'sqlite', 6) === 0) {
+        if (!file_exists(__DIR__ . DIRECTORY_SEPARATOR . 'database.sqlite')) {
+            $db = db();
+            $exec = $db->exec("CREATE TABLE IF NOT EXISTS block (
+                id INT UNSIGNED NOT NULL PRIMARY KEY,
+                pixels VARCHAR(21600) NOT NULL
+            )");
+            $pixels = str_repeat('0', 21600);
+            for ($i = 1; $i <= BLOCK_MAX; ++$i) {
+                $db->exec("INSERT INTO block VALUES ($i, '$pixels')");
+            }
+        }
+    } elseif (strncmp($dsn, 'mysql', 5) === 0) {
+        // $db = db();
+        // $db->exec("CREATE TABLE IF NOT EXISTS block (
+        //     id INT(8) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        //     pixels VARCHAR(21600) NOT NULL
+        // ) ENGINE InnoDB CHARACTER SET latin1 COLLATE latin1_bin");
+    }
+}
+
+/**
+ * Get a query for the click action
+ * @param integer $pixelId
+ * @param string $color
+ * @param integer $blockId
+ * @return string
+ */
+function getClickQuery($pixelId, $color, $blockId)
+{
+    $dsn = getConfig('db.dsn');
+    if (strncmp($dsn, 'sqlite', 6) === 0) {
+        return "UPDATE block SET pixels = SUBSTR(pixels, 1, $pixelId * 6) || '$color' || SUBSTR(pixels, $pixelId * 6 + 1 + 6) WHERE id = $blockId LIMIT 1";
+    }
+    return "UPDATE block SET pixels = INSERT(pixels, $pixelId * 6 + 1, 6, '$color') WHERE id = $blockId LIMIT 1";
+}
+
+/**
  * Allocate a RGB color
  * @param resource $image
  * @param string $rgbColor RRGGBB
