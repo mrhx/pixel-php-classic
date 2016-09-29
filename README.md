@@ -1,5 +1,7 @@
 # pixel-php-classic
 
+![Screenshot](/screenshot.png)
+
 This is an implementation of http://youpixelart.com written in a very simple classic PHP style using only plain scripts.
 It uses no fancy frameworks, no SOLID, but DRY and KISS instead.
 
