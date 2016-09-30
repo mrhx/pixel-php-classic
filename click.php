@@ -6,8 +6,6 @@
 
 define('PIXEL_APP', 1);
 
-ini_set('display_errors', true);
-
 require 'protected/config.php';
 
 $blockId = validateBlockId(isset($_GET['id']) ? $_GET['id'] : '');

@@ -95,7 +95,7 @@ function getClickQuery($pixelId, $color, $blockId)
 {
     $dsn = getConfig('db.dsn');
     if (strncmp($dsn, 'sqlite', 6) === 0) {
-        return "UPDATE block SET pixels = SUBSTR(pixels, 1, $pixelId * 6) || '$color' || SUBSTR(pixels, $pixelId * 6 + 1 + 6) WHERE id = $blockId LIMIT 1";
+        return "UPDATE block SET pixels = SUBSTR(pixels, 1, $pixelId * 6) || '$color' || SUBSTR(pixels, $pixelId * 6 + 1 + 6) WHERE id = $blockId";
     }
     return "UPDATE block SET pixels = INSERT(pixels, $pixelId * 6 + 1, 6, '$color') WHERE id = $blockId LIMIT 1";
 }
