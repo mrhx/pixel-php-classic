@@ -47,7 +47,7 @@ $color = isset($_GET['color']) ? $_GET['color'] : '2980b9';
                 <?php endif ?>
             </div>
             <div id="images" class="images">
-                <input type="image" name="image" src="/image.php?id=<?= $blockId ?>" width="<?= BLOCK_WIDTH ?>" height="<?= BLOCK_HEIGHT 
+                <input type="image" name="image" src="/image.php?id=<?= $blockId ?>&amp;rnd=<?= time() ?>" width="<?= BLOCK_WIDTH ?>" height="<?= BLOCK_HEIGHT 
                 ?>">
             </div>
             <div class="page-link" id="page-down">
