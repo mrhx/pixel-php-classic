@@ -18,7 +18,7 @@ if (!$data = $query->fetch()) {
     exit;
 }
 
-if (!$image = imagecreate(BLOCK_WIDTH, BLOCK_HEIGHT)) {
+if (!$image = imagecreatetruecolor(BLOCK_WIDTH, BLOCK_HEIGHT)) {
     trigger_error("Can't create an image of the $blockId block", E_USER_ERROR);
 }
 
