@@ -16,3 +16,5 @@ This work is intended for participating in https://a-k-apart.com contest, so it 
 ![10k-proof](/10k-proof.png)
 
 For the first run with sqlite, please give it some time to finish the initialization things as it can take even 30 seconds.
+
+https://a-k-apart.com/gallery/Youpixelart
